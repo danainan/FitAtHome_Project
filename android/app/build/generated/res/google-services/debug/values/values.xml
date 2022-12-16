@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">1042665730828-vf3ckj9j4rj81gmmrnvbbpd7456g3bik.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://fitathome-278d5-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+    <string name="gcm_defaultSenderId" translatable="false">1042665730828</string>
+    <string name="google_api_key" translatable="false">AIzaSyCGoBhw3uqHbyqOP7Rs2kQyaxOL9P8SHsA</string>
+    <string name="google_app_id" translatable="false">1:1042665730828:android:e77d2a5b2aac9e18f44f29</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCGoBhw3uqHbyqOP7Rs2kQyaxOL9P8SHsA</string>
+    <string name="google_storage_bucket" translatable="false">fitathome-278d5.appspot.com</string>
+    <string name="project_id" translatable="false">fitathome-278d5</string>
+</resources>

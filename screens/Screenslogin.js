@@ -4,6 +4,7 @@ import { Button, TextInput } from 'react-native-paper'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 import firestore from '@react-native-firebase/firestore';
 import messaging from '@react-native-firebase/messaging';
+import auth from '@react-native-firebase/auth';
 
 
 
@@ -12,50 +13,19 @@ const Screenslogin = ({navigation}) => {
 
     const Screensmenu = () => {
         navigation.navigate('Screensmenu');
-      }
+    }
+    const Screensregister = () => {
+        navigation.navigate('Screensregister');
+    }
 
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    useEffect(() => { 
-        getFcmToken()
-    },[])
-
-    const getFcmToken = async () => {
-        let token = await messaging().getToken();
-        console.log(token);
-    };
+    
     
 
-    const saveData = () => {
-        // firestore()
-        //     .collection('Users')
-        //     .add({
-        //         email:email,
-        //         password:password
-        //     })
-        //     .then(()=> {
-        //         console.log('User added!')
-        //     })
-        firestore()
-            .collection('Users')
-            .where('email', '==', email)
-            .get()
-            .then(querySnapshot => {
-                console.log(querySnapshot.docs);
-
-                if(querySnapshot.docs.length > 0){
-                    console.log(querySnapshot.docs[0].data().email
-                    + ' ' +
-                    querySnapshot.docs[0].data().password   
-                )
-                }
-
-                
-            })
-           
-    }
+    
 
 
 
@@ -86,10 +56,10 @@ const Screenslogin = ({navigation}) => {
                 />
             </View>
             <View>
-                <Button style={styles.buttonloginContainer} mode="contained" onPress={saveData}>
+                <Button style={styles.buttonloginContainer} mode="contained" >
                     Login
                 </Button>
-                <Button style={styles.buttonloginContainer} mode="contained" onPress={() => console.log('Pressed')}>
+                <Button style={styles.buttonloginContainer} mode="contained" onPress={Screensregister}>
                     Register
                 </Button>
                 <Button style={styles.buttonloginContainer} mode="contained" onPress={Screensmenu}>
