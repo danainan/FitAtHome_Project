@@ -33,24 +33,24 @@ export default function Screensmenu({navigation}){
 
             {/* กดเข้า Function คำนวณ BMI */}
             <TouchableOpacity onPress={Screensbmi}>
-            <View style={styles.buttonContainer}>
-                    <Text style={styles.button}>Function Calculator BMI</Text>
-                </View>
+                <Image source={require('../img/bmibanner.jpg')}
+                        style={styles.bannerContainer}
+                />
                 
             </TouchableOpacity>
 
             {/* กดเข้า Function คำนวณ BMR */}
             <TouchableOpacity onPress={Screensbmr}>
-            <View style={styles.buttonContainer}>
-                    <Text style={styles.button}>Function Calculator BMR</Text>
-                </View>
+                <Image source={require('../img/bmr.png')}
+                        style={styles.bannerContainer}
+                />
             </TouchableOpacity>
 
             {/* กดเข้า Function Muscle Building */}
             <TouchableOpacity onPress={Screenstypemuscle}>
-                <View style={styles.buttonContainer}>
-                    <Text style={styles.button}>Function Muscle Building</Text>
-                </View>
+                <Image source={require('../img/havyweightbanner.png')}
+                        style={styles.bannerContainer}
+                />
             </TouchableOpacity>
         </View>
         
@@ -94,6 +94,17 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         color: "#EC8C32",
         fontWeight: "bold"
+    },
+    buttonContainer: {
+        backgroundColor: "#EC8C32",
+        alignSelf: "center",
+        justifyContent: "center",
+        width: '100%',
+        padding: 17,
+        marginTop: 15,
+    },
+    bannerContainer: {
+        width: '100%', height:150, resizeMode: 'stretch',borderRadius: 20, paddingHorizontal: 10, paddingVertical: 10, marginBottom: 10, marginTop: 10, alignSelf: 'center'
     }
 
 })
