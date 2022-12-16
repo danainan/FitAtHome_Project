@@ -33,36 +33,16 @@ export default function Screensmenu({navigation}){
 
             {/* กดเข้า Function คำนวณ BMI */}
             <TouchableOpacity onPress={Screensbmi}>
-                <View >
-                    <Image
-                     style={{
-                        width: '100%',
-                        height: '50%',
-                        marginTop: 30,
-                        borderRadius: 10,
-                        borderWidth: 1,
-                        borderColor: '#000',
-                      }}
-                    
-                    source={require('../img/bmibanner.jpg')}/>
+            <View style={styles.buttonContainer}>
+                    <Text style={styles.button}>Function Calculator BMI</Text>
                 </View>
                 
             </TouchableOpacity>
 
             {/* กดเข้า Function คำนวณ BMR */}
             <TouchableOpacity onPress={Screensbmr}>
-                <View>
-                <Image
-                     style={{
-                        width: '100%',
-                        height: '50%',
-                        marginTop: 30,
-                        borderRadius: 10,
-                        borderWidth: 1,
-                        borderColor: '#000',
-                      }}
-                    
-                    source={require('../img/bmr.png')}/>
+            <View style={styles.buttonContainer}>
+                    <Text style={styles.button}>Function Calculator BMR</Text>
                 </View>
             </TouchableOpacity>
 
