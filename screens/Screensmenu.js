@@ -3,7 +3,17 @@ import React, { useState, useEffect, useDebugValue } from 'react'
 import { Button, TextInput } from 'react-native-paper'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 
-const Screensmenu = () => {
+export default function Screensmenu({navigation}){
+
+    const Screensbmi = () => {
+        navigation.navigate('Screensbmi');
+    }
+    const Screensbmr = () => {
+        navigation.navigate('Screensbmr');
+    }
+    const Screenstypemuscle = () => {
+        navigation.navigate('Screenstypemuscle')
+    }
     
     return (
         <View style={styles.container}>
@@ -22,21 +32,42 @@ const Screensmenu = () => {
             </View>
 
             {/* กดเข้า Function คำนวณ BMI */}
-            <TouchableOpacity>
-                <View style={styles.buttonContainer}>
-                    <Text style={styles.button}>Function คำนวณ BMI</Text>
+            <TouchableOpacity onPress={Screensbmi}>
+                <View >
+                    <Image
+                     style={{
+                        width: '100%',
+                        height: '50%',
+                        marginTop: 30,
+                        borderRadius: 10,
+                        borderWidth: 1,
+                        borderColor: '#000',
+                      }}
+                    
+                    source={require('../img/bmibanner.jpg')}/>
                 </View>
+                
             </TouchableOpacity>
 
             {/* กดเข้า Function คำนวณ BMR */}
-            <TouchableOpacity>
-                <View style={styles.buttonContainer}>
-                    <Text style={styles.button}>Function คำนวณ BMR</Text>
+            <TouchableOpacity onPress={Screensbmr}>
+                <View>
+                <Image
+                     style={{
+                        width: '100%',
+                        height: '50%',
+                        marginTop: 30,
+                        borderRadius: 10,
+                        borderWidth: 1,
+                        borderColor: '#000',
+                      }}
+                    
+                    source={require('../img/bmr.png')}/>
                 </View>
             </TouchableOpacity>
 
             {/* กดเข้า Function Muscle Building */}
-            <TouchableOpacity>
+            <TouchableOpacity onPress={Screenstypemuscle}>
                 <View style={styles.buttonContainer}>
                     <Text style={styles.button}>Function Muscle Building</Text>
                 </View>
@@ -70,15 +101,7 @@ const styles = StyleSheet.create({
         marginBottom:1,
         height : "100%",
     },
-    buttonContainer: {
-        margin: 15,
-        height: 150,
-        marginHorizontal: 10,
-        backgroundColor: "#A7A5A5",
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: 15
-    },
+   
     button: {
         textTransform: "uppercase",
         color: "#FFF",
@@ -95,4 +118,3 @@ const styles = StyleSheet.create({
 
 })
 
-export default Screensmenu

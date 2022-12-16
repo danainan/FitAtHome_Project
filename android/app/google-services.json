@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1042665730828",
+    "firebase_url": "https://fitathome-278d5-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "fitathome-278d5",
+    "storage_bucket": "fitathome-278d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042665730828:android:e77d2a5b2aac9e18f44f29",
+        "android_client_info": {
+          "package_name": "com.fitathome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1042665730828-s38dkopr84kfttu6or5kf5pvl9k4ctvv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fitathome",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "1042665730828-vf3ckj9j4rj81gmmrnvbbpd7456g3bik.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGoBhw3uqHbyqOP7Rs2kQyaxOL9P8SHsA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1042665730828-vf3ckj9j4rj81gmmrnvbbpd7456g3bik.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

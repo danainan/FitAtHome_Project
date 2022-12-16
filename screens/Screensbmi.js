@@ -3,9 +3,29 @@ import React, { useState, useEffect, useDebugValue } from 'react'
 import { Button, TextInput } from 'react-native-paper'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 
-const Screensbmi = () => {
+const Screensbmi = ({navigation}) => {
     const [weight, setWeight] = useState("")
     const [height, setHeight] = useState("")
+    const [bmi, setBmi] = useState('')
+    const [description, setDescription] = useState('')
+
+    const calculateBmi = () => {
+        const bmi = weight /((height/100) * (height/100))
+        setBmi(bmi.toFixed(1))
+  
+        if(bmi < 18.5){
+          setDescription('Underweight, eat more!')
+        }
+        else if (bmi >= 18.5 && bmi <= 24.9){
+          setDescription('Normal, Keep it up!')
+        }
+        else if (bmi >= 25 && bmi <= 29.9){
+          setDescription('Overweight, start working out!!')
+        }
+        else if (bmi >= 30 ){
+          setDescription('Obese, Hit the gym!')
+        }
+      }
 
   return (
     <View style={styles.container}>
@@ -40,7 +60,7 @@ const Screensbmi = () => {
             />
         </View>
         <View>
-            <Button style={styles.buttoncalContainer} mode="contained" onPress={() => console.log('Pressed')}>
+            <Button style={styles.buttoncalContainer} mode="contained" onPress={calculateBmi}>
                 Calculate
             </Button>
         </View>
@@ -48,8 +68,11 @@ const Screensbmi = () => {
             <Text style={styles.text}>ค่า BMI</Text>
                 <TextInput
                     style ={styles.input}
-                    label="เเสดงผลการคำนวณ"
-            />
+                    label={bmi}
+                />
+        </View>
+        <View>
+            <Text styles={styles.text}>{description}</Text>
         </View>
     </View>
   )
