@@ -7,8 +7,8 @@ const Screensbmr = () => {
     const [weight, setWeight] = useState("")
     const [height, setHeight] = useState("")
     const [age, setAge] = useState("")
-    const [men, setMen] = useState("")
-    const [women, setWomen] = useState("")
+    const [gender, setGender] = useState("")
+    
 
   return (
     <View style={styles.container}>

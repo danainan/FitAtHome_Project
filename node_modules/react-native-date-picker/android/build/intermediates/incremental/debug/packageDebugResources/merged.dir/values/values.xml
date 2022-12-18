@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <string name="ampm_description">Select AM/PM</string>
+    <string name="date_description">Select Date</string>
+    <string name="day_description">Select Day</string>
+    <string name="hour_description">Select Hour</string>
+    <string name="hour_tag">Hour :</string>
+    <string name="minutes_description">Select Minutes</string>
+    <string name="minutes_tag">Minutes </string>
+    <string name="month_description">Select Month</string>
+    <string name="overlay">Date Picker Overlay</string>
+    <string name="time_tag">Time is</string>
+    <string name="year_description">Select Year</string>
+    <style name="DatePickerBaseTheme">
+        <item name="android:textSize" ns1:ignore="SpUsage">17sp</item>
+    </style>
+    <style name="DatePickerTheme" parent="DatePickerBaseTheme">
+        
+    </style>
+    <style name="android_native">
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:descendantFocusability">blocksDescendants</item>
+
+    </style>
+    <style name="android_native_small" parent="android_native">
+        <item name="android:layout_width">40dp</item>
+    </style>
+</resources>

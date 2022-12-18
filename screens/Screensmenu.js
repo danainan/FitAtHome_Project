@@ -1,7 +1,9 @@
-import { StyleSheet, View, Text, Image, Touchable, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Text, Image,TouchableOpacity } from 'react-native'
 import React, { useState, useEffect, useDebugValue } from 'react'
-import { Button, TextInput } from 'react-native-paper'
-import { Colors } from 'react-native/Libraries/NewAppScreen'
+import { Button, IconButton,MD3Colors } from 'react-native-paper'
+import auth from '@react-native-firebase/auth';
+import firebase from '@react-native-firebase/app';
+
 
 export default function Screensmenu({navigation}){
 
@@ -14,47 +16,75 @@ export default function Screensmenu({navigation}){
     const Screenstypemuscle = () => {
         navigation.navigate('Screenstypemuscle')
     }
+
+   
     
     return (
-        <View style={styles.container}>
-            <View style={styles.headContainer}>
-                <View style={styles.imageContainer}>
-                    <Image source={require('../img/Logo_header.jpg')} 
-                        style={{ width: 220, height: 50}}
-                    />
-                </View>
-            </View>
-
-            <View >
-                <Text style={styles.fontMenu}>
-                    MENU
-                </Text>
-            </View>
-
-            {/* กดเข้า Function คำนวณ BMI */}
-            <TouchableOpacity onPress={Screensbmi}>
-                <Image source={require('../img/bmibanner.jpg')}
-                        style={styles.bannerContainer}
-                />
-                
-            </TouchableOpacity>
-
-            {/* กดเข้า Function คำนวณ BMR */}
-            <TouchableOpacity onPress={Screensbmr}>
-                <Image source={require('../img/bmr.png')}
-                        style={styles.bannerContainer}
-                />
-            </TouchableOpacity>
-
-            {/* กดเข้า Function Muscle Building */}
-            <TouchableOpacity onPress={Screenstypemuscle}>
-                <Image source={require('../img/havyweightbanner.png')}
-                        style={styles.bannerContainer}
-                />
-            </TouchableOpacity>
+      <View style={styles.container}>
+        <View style={styles.headContainer}>
+          <View style={styles.imageContainer}>
+            <Image
+              source={require('../img/Logo_header.jpg')}
+              style={{width: 220, height: 50}}
+            />
+          </View>
         </View>
-        
-    )
+
+        <View>
+          <View style={{flexDirection: 'row',marginTop:5,marginLeft:5}}>
+            <View
+              style={{
+                flex: 3,
+                paddingTop: 10,
+                paddingRight: 13,
+                borderRadius:20,
+                backgroundColor:'#748CAD'
+              }}>
+            <Text style={[styles.fontMenu,{color:'white'}]}>Welcome ' s</Text>
+            <Text style={[styles.fontMenu]}>{auth().currentUser.email}</Text>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                paddingTop: 10,
+                paddingRight: 7,
+                borderColor: '#EC8C32',
+              }}>
+              <IconButton
+                icon="account"
+                size={50}
+                iconColor={MD3Colors.neutral100}
+                onPress={() => navigation.navigate('ProfileScreen')}
+              />
+            </View>
+          </View>
+        </View>
+
+        {/* กดเข้า Function คำนวณ BMI */}
+        <TouchableOpacity onPress={Screensbmi}>
+          <Image
+            source={require('../img/bmibanner.jpg')}
+            style={styles.bannerContainer}
+          />
+        </TouchableOpacity>
+
+        {/* กดเข้า Function คำนวณ BMR */}
+        <TouchableOpacity onPress={Screensbmr}>
+          <Image
+            source={require('../img/bmr.png')}
+            style={styles.bannerContainer}
+          />
+        </TouchableOpacity>
+
+        {/* กดเข้า Function Muscle Building */}
+        <TouchableOpacity onPress={Screenstypemuscle}>
+          <Image
+            source={require('../img/havyweightbanner.png')}
+            style={styles.bannerContainer}
+          />
+        </TouchableOpacity>
+      </View>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -63,7 +93,7 @@ const styles = StyleSheet.create({
         width: '100%',
         maxWidth: 430,
         paddingBottom: 200,
-        backgroundColor: "#355682"
+        backgroundColor: "#2D5283"
     },
     headContainer: {
         backgroundColor: "#EC8C32",
@@ -89,11 +119,13 @@ const styles = StyleSheet.create({
     },
     fontMenu: {
         fontFamily: "verdana",
-        fontSize: 39,
+        fontSize: 18,
         paddingLeft: 13,
         paddingTop: 10,
         color: "#EC8C32",
-        fontWeight: "bold"
+        fontWeight: "bold",
+        fontStyle: "italic",
+
     },
     buttonContainer: {
         backgroundColor: "#EC8C32",

@@ -1,7 +1,8 @@
-import { StyleSheet, View, Text, Image, Touchable, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Text, Image, Touchable, TouchableOpacity, SafeAreaView } from 'react-native'
 import React, { useState, useEffect, useDebugValue } from 'react'
 import { Button, TextInput } from 'react-native-paper'
-import { Colors } from 'react-native/Libraries/NewAppScreen'
+import firestore, {serverTimestamp} from '@react-native-firebase/firestore'
+import auth from '@react-native-firebase/auth';
 
 const Screensbmi = ({navigation}) => {
     const [weight, setWeight] = useState("")
@@ -25,10 +26,29 @@ const Screensbmi = ({navigation}) => {
         else if (bmi >= 30 ){
           setDescription('Obese, Hit the gym!')
         }
-      }
+    }
+
+    const saveData = () => {
+
+        firestore()
+        .collection('Bmi').add({
+            UserID : auth().currentUser.uid,
+            weight: weight,
+            height: height,
+            bmi: bmi,
+            date: firestore.FieldValue.serverTimestamp(),
+        })
+        .then(() => {
+            console.log('Data saved!');
+            alert('Data saved!');
+        })
+    }
+
+
+
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
         <View style={styles.headContainer}>
             <View style={styles.imageContainer}>
                 <Image source={require('../img/Logo_header.jpg')}
@@ -51,7 +71,7 @@ const Screensbmi = ({navigation}) => {
                 value={weight}
                 onChangeText={text => setWeight(text)}
             />
-            <Text style={styles.text}>น้ำหนักตัว (kg.)</Text>
+            <Text style={styles.text}>ส่วนสูง (cm.)</Text>
             <TextInput
                 style ={styles.input}
                 label="Height"
@@ -74,7 +94,13 @@ const Screensbmi = ({navigation}) => {
         <View>
             <Text styles={styles.text}>{description}</Text>
         </View>
-    </View>
+
+        <View>
+            <Button style={styles.buttoncalContainer} mode="contained" onPress={saveData}>
+                Save
+            </Button>
+        </View>
+    </SafeAreaView>
   )
 }
 

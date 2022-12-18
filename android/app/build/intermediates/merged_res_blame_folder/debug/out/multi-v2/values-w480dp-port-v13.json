@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.fitathome.app-mergeDebugResources-34:/values-w480dp-port-v13/values-w480dp-port-v13.xml",
+            "outputFile": "com.fitathome.app-mergeDebugResources-35:/values-w480dp-port-v13/values-w480dp-port-v13.xml",
             "map": [
                 {
                     "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\e3293ae0ad33779fbdd717a6184558e6\\transformed\\material-1.1.0\\res\\values-w480dp-port-v13\\values-w480dp-port-v13.xml",

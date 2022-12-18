@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.fitathome.app-mergeDebugResources-34:/values-v22/values-v22.xml",
+            "outputFile": "com.fitathome.app-mergeDebugResources-35:/values-v22/values-v22.xml",
             "map": [
                 {
                     "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\e0686102678e5eabdd57921af541c76e\\transformed\\appcompat-1.4.1\\res\\values-v22\\values-v22.xml",

@@ -11,6 +11,7 @@ import Screensbmr from './screens/Screensbmr'
 import Screenstypemuscle from './screens/Screenstypemuscle'
 import Screensshowoutput from './screens/Screensshowoutput'
 import MuscleCreate from './screens/MuscleCreate'
+import ProfileScreen from './screens/ProfileScreen'
 
 const Stack = createStackNavigator();
 
@@ -55,6 +56,11 @@ function Mystack() {
         <Stack.Screen
           name="Screensshowoutput"
           component={Screensshowoutput}
+          options={{headerShown:false}}
+        />
+        <Stack.Screen
+          name="ProfileScreen"
+          component={ProfileScreen}
           options={{headerShown:false}}
         />
       </Stack.Navigator>

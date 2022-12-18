@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.fitathome.app-mergeDebugResources-34:/values-gl/values-gl.xml",
+            "outputFile": "com.fitathome.app-mergeDebugResources-35:/values-gl/values-gl.xml",
             "map": [
                 {
                     "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\017cfa72b29c7957996c27121aa0ef5f\\transformed\\jetified-play-services-base-18.0.1\\res\\values-gl\\values.xml",
