@@ -3,6 +3,7 @@ import React, { useState, useEffect, useDebugValue } from 'react'
 import { Button, TextInput } from 'react-native-paper'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 
+
 const Screenstypemuscle = () => {
   return (
 
@@ -25,43 +26,57 @@ const Screenstypemuscle = () => {
             <View style={styles.row}>
                 <TouchableOpacity>
                     <View style={styles.buttonContainer}>
-                        <Text style={styles.button}>BICEPS</Text>
+                            <Image source={require('../img/category/biceps.jpg')} 
+                                style={styles.bannerContainer} 
+                            />  
                     </View>
                 </TouchableOpacity>
 
                 <TouchableOpacity>
                     <View style={styles.buttonContainer}>
-                        <Text style={styles.button}>QUADS</Text>
+                            <Image source={require('../img/category/quads.jpg')} 
+                                style={styles.bannerContainer} 
+                            />  
                     </View>
                 </TouchableOpacity>
                 
                 <TouchableOpacity>
                     <View style={styles.buttonContainer}>
-                        <Text style={styles.button}>CHEST</Text>
+                            <Image source={require('../img/category/pec.jpg')}
+                                style={styles.bannerContainer} 
+                            />  
                     </View>
                 </TouchableOpacity>
 
                 <TouchableOpacity>
                     <View style={styles.buttonContainer}>
-                        <Text style={styles.button}>TRICEPS</Text>
+                            <Image source={require('../img/category/triceps.jpg')}
+                                style={styles.bannerContainer} 
+                            />  
                     </View>
                 </TouchableOpacity>
 
                 <TouchableOpacity>
                     <View style={styles.buttonContainer}>
-                        <Text style={styles.button}>ABS</Text>
+                            <Image source={require('../img/category/abs.jpg')}
+                                style={styles.bannerContainer} 
+                            />  
                     </View>
                 </TouchableOpacity>
 
                 <TouchableOpacity>
                     <View style={styles.buttonContainer}>
-                        <Text style={styles.button}>SHOULDERS</Text>
+                            <Image source={require('../img/category/shoulders.jpg')}
+                                style={styles.bannerContainer} 
+                            />  
                     </View>
                 </TouchableOpacity>
 
                 <TouchableOpacity>
                     <View style={styles.buttonContainer}>
-                        <Text style={styles.button}>BACK</Text>
+                            <Image source={require('../img/category/back.jpg')}
+                                style={styles.bannerContainer} 
+                            />
                     </View>
                 </TouchableOpacity>
             </View>
@@ -114,7 +129,10 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
         flexWrap: "wrap",
-     },
+    },
+    bannerContainer: {
+        width: '100%', height:135, resizeMode: 'stretch',borderRadius: 10, paddingVertical: 10, marginBottom: 10, marginTop: 10, alignSelf: 'center'
+    }
 })
 
 export default Screenstypemuscle

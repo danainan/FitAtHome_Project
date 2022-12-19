@@ -41,7 +41,6 @@ function ProfileScreen({navigation}) {
             </Text>
 
             <Text style={styles.fontMenu}>
-                Logout
                 <Button title="Logout" onPress={signOut} />
 
             </Text>

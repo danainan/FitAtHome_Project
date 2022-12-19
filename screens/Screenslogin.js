@@ -57,6 +57,14 @@ const Screenslogin = ({navigation}) => {
            
         });
     }
+
+    function loginValidation() {
+        if (email == "" || password == "") {
+            Alert.alert("Please fill in all fields");
+        } else {
+            login();
+        }
+    }
     
 
 
@@ -96,14 +104,11 @@ const Screenslogin = ({navigation}) => {
                 />
             </View>
             <View>
-                <Button style={styles.buttonloginContainer} mode="contained" onPress={login}>
+                <Button style={styles.buttonloginContainer} mode="contained" onPress={loginValidation}>
                     Login
                 </Button>
                 <Button style={styles.buttonloginContainer} mode="contained" onPress={Screensregister}>
                     Register
-                </Button>
-                <Button style={styles.buttonloginContainer} mode="contained" onPress={Screensmenu}>
-                    MENU
                 </Button>
             </View>
         </SafeAreaView>

@@ -44,6 +44,25 @@ const Screensbmi = ({navigation}) => {
         })
     }
 
+    function validateSaveData() {
+        if (weight == "" || height == "") {
+            alert("Please enter your weight and height")
+        } else {
+            saveData()
+        }
+    }
+
+    function validateCalculateBmi() {
+        if (weight == "" || height == "") {
+            alert("Please enter your weight and height")
+        } else {
+            calculateBmi()
+        }
+    }
+
+
+
+
 
 
 
@@ -70,6 +89,7 @@ const Screensbmi = ({navigation}) => {
                 label="Weight"
                 value={weight}
                 onChangeText={text => setWeight(text)}
+                keyboardType="numeric"
             />
             <Text style={styles.text}>ส่วนสูง (cm.)</Text>
             <TextInput
@@ -77,10 +97,11 @@ const Screensbmi = ({navigation}) => {
                 label="Height"
                 value={height}
                 onChangeText={text => setHeight(text)}
+                keyboardType="numeric"
             />
         </View>
         <View>
-            <Button style={styles.buttoncalContainer} mode="contained" onPress={calculateBmi}>
+            <Button style={styles.buttoncalContainer} mode="contained" onPress={validateCalculateBmi}>
                 Calculate
             </Button>
         </View>
@@ -96,9 +117,20 @@ const Screensbmi = ({navigation}) => {
         </View>
 
         <View>
-            <Button style={styles.buttoncalContainer} mode="contained" onPress={saveData}>
+            <Button style={styles.buttoncalContainer} mode="contained" onPress={validateSaveData}>
                 Save
             </Button>
+        </View>
+        <View>
+            <TouchableOpacity onPress={() => navigation.navigate('ScreenbmiHistory')}>
+                <Image
+                    source={require('../img/banner-graph.png')}
+                    style={styles.bannerContainer}
+                > 
+                </Image>
+                <Text style={{textAlign: 'center', color: '#FFFFFF'}}>คลิกเพื่อดูประวัติ</Text>
+            </TouchableOpacity>
+            
         </View>
     </SafeAreaView>
   )
@@ -155,6 +187,13 @@ const styles = StyleSheet.create({
         backgroundColor: "#EC8C32"
 
     },
+    bannerContainer: {
+        width: '80%', height:150, resizeMode: 'stretch',borderRadius: 20, paddingHorizontal: 10, paddingVertical: 10, marginBottom: 10, marginTop: 10, alignSelf: 'center',
+        borderWidth: 3, borderColor: '#00B6DE'
+        
+    },
+
+
 })
 
 

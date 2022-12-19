@@ -2,7 +2,7 @@ import { StyleSheet, View, Text, Image,TouchableOpacity } from 'react-native'
 import React, { useState, useEffect, useDebugValue } from 'react'
 import { Button, IconButton,MD3Colors } from 'react-native-paper'
 import auth from '@react-native-firebase/auth';
-import firebase from '@react-native-firebase/app';
+import firestore from '@react-native-firebase/firestore';
 
 
 export default function Screensmenu({navigation}){
@@ -17,6 +17,31 @@ export default function Screensmenu({navigation}){
         navigation.navigate('Screenstypemuscle')
     }
 
+    const getUsername = async () => {
+        const user = await auth().currentUser.uid;
+        const name = firestore().collection('Users').doc(user).get().then((doc) => {
+            if (doc.exists) {
+                // console.log("Document data:", doc.data().fname),console.log("Document data:", doc.data().lname);
+                setName(doc.data().fname);
+                setLname(doc.data().lname);
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+
+       
+    }
+
+    const [name, setName] = useState('');
+    const [lname, setLname] = useState('');
+
+
+    useEffect(() => {
+        getUsername();
+    }, []);
    
     
     return (
@@ -41,7 +66,7 @@ export default function Screensmenu({navigation}){
                 backgroundColor:'#748CAD'
               }}>
             <Text style={[styles.fontMenu,{color:'white'}]}>Welcome ' s</Text>
-            <Text style={[styles.fontMenu]}>{auth().currentUser.email}</Text>
+            <Text style={[styles.fontMenu]}>{name.toUpperCase()} {lname.toUpperCase()}</Text>
             </View>
             <View
               style={{

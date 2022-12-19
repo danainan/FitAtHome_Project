@@ -31,7 +31,7 @@ const Screensregister = ({navigation}) => {
                 fname: fname,
                 lname: lname,
                 gender: gender,
-                date: date,
+                date: firestore.Timestamp.fromDate(date),
 
             })
             .then(() => {
