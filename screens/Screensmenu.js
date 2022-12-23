@@ -17,9 +17,9 @@ export default function Screensmenu({navigation}){
         navigation.navigate('Screenstypemuscle')
     }
 
-    const getUsername = async () => {
-        const user = await auth().currentUser.uid;
-        const name = firestore().collection('Users').doc(user).get().then((doc) => {
+    const getUsername = () => {
+        const user = auth().currentUser.uid;
+        firestore().collection('Users').doc(user).get().then((doc) => {
             if (doc.exists) {
                 // console.log("Document data:", doc.data().fname),console.log("Document data:", doc.data().lname);
                 setName(doc.data().fname);
@@ -56,7 +56,7 @@ export default function Screensmenu({navigation}){
         </View>
 
         <View>
-          <View style={{flexDirection: 'row',marginTop:5,marginLeft:5}}>
+          <View style={{flexDirection: 'row',marginTop:15,marginLeft:15}}>
             <View
               style={{
                 flex: 3,
@@ -84,7 +84,8 @@ export default function Screensmenu({navigation}){
             </View>
           </View>
         </View>
-
+        
+        <View style={{marginHorizontal:15, marginVertical:15}}>
         {/* กดเข้า Function คำนวณ BMI */}
         <TouchableOpacity onPress={Screensbmi}>
           <Image
@@ -108,7 +109,9 @@ export default function Screensmenu({navigation}){
             style={styles.bannerContainer}
           />
         </TouchableOpacity>
+        </View>
       </View>
+
     );
 }
 

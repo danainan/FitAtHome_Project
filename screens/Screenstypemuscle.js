@@ -1,10 +1,9 @@
-import { StyleSheet, View, Text, Image, Touchable, TouchableOpacity } from 'react-native'
-import React, { useState, useEffect, useDebugValue } from 'react'
-import { Button, TextInput } from 'react-native-paper'
-import { Colors } from 'react-native/Libraries/NewAppScreen'
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
+import React from 'react'
 
 
-const Screenstypemuscle = () => {
+
+const Screenstypemuscle = ({navigation}) => {
   return (
 
     <View style={styles.container}>
@@ -24,15 +23,27 @@ const Screenstypemuscle = () => {
         
         <View style={{ padding:10, flex: 1}}>
             <View style={styles.row}>
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('MuscleCreate',{
+                        category_name: 'biceps',
+
+                    })}
+                >
                     <View style={styles.buttonContainer}>
                             <Image source={require('../img/category/biceps.jpg')} 
                                 style={styles.bannerContainer} 
+                                
                             />  
+
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('MuscleCreate',{
+                        category_name: 'quads',
+
+                    })}
+                >
                     <View style={styles.buttonContainer}>
                             <Image source={require('../img/category/quads.jpg')} 
                                 style={styles.bannerContainer} 
@@ -40,7 +51,12 @@ const Screenstypemuscle = () => {
                     </View>
                 </TouchableOpacity>
                 
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('MuscleCreate',{
+                        category_name: 'chest',
+
+                    })}
+                >
                     <View style={styles.buttonContainer}>
                             <Image source={require('../img/category/pec.jpg')}
                                 style={styles.bannerContainer} 
@@ -48,7 +64,12 @@ const Screenstypemuscle = () => {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('MuscleCreate',{
+                        category_name: 'triceps',
+
+                    })}
+                >
                     <View style={styles.buttonContainer}>
                             <Image source={require('../img/category/triceps.jpg')}
                                 style={styles.bannerContainer} 
@@ -56,7 +77,12 @@ const Screenstypemuscle = () => {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('MuscleCreate',{
+                        category_name: 'abs',
+
+                    })}
+                    >
                     <View style={styles.buttonContainer}>
                             <Image source={require('../img/category/abs.jpg')}
                                 style={styles.bannerContainer} 
@@ -64,7 +90,12 @@ const Screenstypemuscle = () => {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('MuscleCreate',{
+                        category_name: 'shoulders',
+
+                    })}
+                >
                     <View style={styles.buttonContainer}>
                             <Image source={require('../img/category/shoulders.jpg')}
                                 style={styles.bannerContainer} 
@@ -72,7 +103,13 @@ const Screenstypemuscle = () => {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('MuscleCreate',{
+                        category_name: "back",
+  
+
+                    })}
+                >
                     <View style={styles.buttonContainer}>
                             <Image source={require('../img/category/back.jpg')}
                                 style={styles.bannerContainer} 

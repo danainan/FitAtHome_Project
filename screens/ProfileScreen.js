@@ -1,6 +1,7 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { SafeAreaView, Text, StyleSheet, View , Image, Button } from 'react-native'
 import auth from '@react-native-firebase/auth';
+import storage from '@react-native-firebase/storage';
 
 
 function ProfileScreen({navigation}) {
@@ -11,6 +12,20 @@ function ProfileScreen({navigation}) {
         .then(() => console.log('User signed out!'));
         navigation.navigate('Screenslogin');
     }
+
+    const [url , setUrl] = useState([])
+
+    useState(() => {
+        storage()
+        .ref('/back')
+        .listAll()
+        .then((result) => {
+            setUrl(result);
+            console.log(result)
+            
+        })
+        
+    }, [])
 
 
   return (
@@ -44,6 +59,11 @@ function ProfileScreen({navigation}) {
                 <Button title="Logout" onPress={signOut} />
 
             </Text>
+
+            
+            
+
+           
 
 
 

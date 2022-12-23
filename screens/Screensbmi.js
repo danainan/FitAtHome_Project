@@ -60,6 +60,23 @@ const Screensbmi = ({navigation}) => {
         }
     }
 
+    function navigateHistoryBmi() {
+        firestore()
+        .collection('Bmi')
+        .where('UserID', '==', auth().currentUser.uid)
+        .get()
+        .then(querySnapshot => {
+            if (querySnapshot.empty) {
+                alert("No data found. You can save your data by clicking 'Save' button")
+            } else {
+             navigation.navigate('ScreenbmiHistory')
+            }
+        })
+
+
+
+    }
+
 
 
 
@@ -122,7 +139,7 @@ const Screensbmi = ({navigation}) => {
             </Button>
         </View>
         <View>
-            <TouchableOpacity onPress={() => navigation.navigate('ScreenbmiHistory')}>
+            <TouchableOpacity onPress={navigateHistoryBmi}>
                 <Image
                     source={require('../img/banner-graph.png')}
                     style={styles.bannerContainer}

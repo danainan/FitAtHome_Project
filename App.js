@@ -9,16 +9,19 @@ import Screensmenu from './screens/Screensmenu'
 import Screensbmi from './screens/Screensbmi'
 import Screensbmr from './screens/Screensbmr'
 import Screenstypemuscle from './screens/Screenstypemuscle'
-import Screensshowoutput from './screens/Screensshowoutput'
 import MuscleCreate from './screens/MuscleCreate'
 import ProfileScreen from './screens/ProfileScreen'
 import ScreenbmiHistory from './screens/ScreenbmiHistory'
+import MuscleCreateDetail from './screens/MuscleCreateDetail'
+
 
 const Stack = createStackNavigator();
 
 function Mystack() {
   return (
-      <Stack.Navigator>
+      <Stack.Navigator
+        initialRouteName="Splash"
+      >
         <Stack.Screen 
           name="Splash"
           component={Splash}
@@ -55,11 +58,6 @@ function Mystack() {
           options={{headerShown:false}}
         />
         <Stack.Screen
-          name="Screensshowoutput"
-          component={Screensshowoutput}
-          options={{headerShown:false}}
-        />
-        <Stack.Screen
           name="ProfileScreen"
           component={ProfileScreen}
           options={{headerShown:false}}
@@ -74,6 +72,12 @@ function Mystack() {
           component={ScreenbmiHistory}
           options={{headerShown:false}}
         />
+        <Stack.Screen
+          name="MuscleCreateDetail"
+          component={MuscleCreateDetail}
+          options={{headerShown:false}}
+        />
+
       </Stack.Navigator>
 
   )

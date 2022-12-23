@@ -8,7 +8,7 @@ export default function Splash({navigation}){
   const isloading = () => {
     setTimeout(() => {
       isLoggedIn();
-    }, 3000);
+    }, 1500);
   }
 
 

@@ -1,13 +1,15 @@
 // ขาด การ order by date และ การแสดงค่า bmi ที่เป็น 0 ออกจากกราฟ
+//setscale ;
 
-import { StyleSheet, Text, View , Dimensions, SafeAreaView} from 'react-native'
+import { StyleSheet, Text, View , Dimensions, SafeAreaView, Alert} from 'react-native'
 import React, {useState, useEffect} from 'react'
 import { LineChart } from 'react-native-chart-kit'
 import firestore from '@react-native-firebase/firestore'
 import auth from '@react-native-firebase/auth'
 import moment from 'moment'
 
-const ScreenbmiHistory = () => {
+
+const ScreenbmiHistory = ({navigation}) => {
 
   const [bmi, setBmi] = useState([])
   const [date, setDate] = useState([])
@@ -24,16 +26,34 @@ const ScreenbmiHistory = () => {
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(documentSnapshot => {
-          bmiRecords.push(documentSnapshot.data().bmi)
-          dateRecords.push(moment(documentSnapshot.data().date.toDate()).format('DD/MM/YYYY'))
+          // bmiRecords.push(documentSnapshot.data().bmi)
+          // dateRecords.push(moment(documentSnapshot.data().date.toDate()).format('DD/MM/YYYY'))
+          if (documentSnapshot.data().bmi != 0) {
+            bmiRecords.push(documentSnapshot.data().bmi)
+            dateRecords.push(moment(documentSnapshot.data().date.toDate()).format('DD/MM/YYYY'))
+
+            setBmi(bmiRecords)
+            setDate(dateRecords)
+            
+
+          }
+          else
+          {
+            Alert.alert("No data found")
+            
+
+            
+          }
         })
-        setBmi(bmiRecords)
-        setDate(dateRecords)
+        
         setLoading(false)
+
+
       }
       )
 
-  
+    
+
 
 
   }, [])
@@ -41,6 +61,20 @@ const ScreenbmiHistory = () => {
   if (loading) {
     return null 
   }
+
+  
+
+  
+
+
+
+
+
+
+
+  
+
+
 
 
 
@@ -50,8 +84,8 @@ const ScreenbmiHistory = () => {
   return (
     
     <SafeAreaView style={styles.container}>
-      <View style={{justifyContent: 'space-between', width: '100%'}}>
-      <LineChart
+    <View style={{justifyContent: 'space-between', width: '100%'}}>
+    <LineChart
         data={{
           labels: date,
           datasets: [
