@@ -1,116 +1,86 @@
 import { StyleSheet, View, Text, Image, TouchableOpacity, FlatList,SafeAreaView } from 'react-native'
 import React, { useState, useEffect} from 'react';
 import firestore from '@react-native-firebase/firestore';
-import storage from '@react-native-firebase/storage';
-import { IconButton } from 'react-native-paper';
+import auth from '@react-native-firebase/auth';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Button } from 'react-native-paper';
+
 
 const MuscleCreate = ({route, navigation}) => {
 
 
 
     const [data, setData] = useState([])
-    const [bookmark, setBookmark] = useState(false)
-
-
-
+    const [bookmarked, setBookmarked] = useState('')
     
-    
-
     useEffect(() => {
 
         
         firestore()
             .collection('muscleCreate')
             .where('category_name', '==', route.params.category_name)
-            .get()
-            .then(querySnapshot => {
+            // .get()
+            // .then(querySnapshot => {
+            //     const data = [];
+            //     querySnapshot.forEach(documentSnapshot => {
+            //         data.push({
+            //             ...documentSnapshot.data(),
+            //             key: documentSnapshot.id
+                        
+            //         });
+            //     }
+            //     );
+            //     setData(data);
+            //     // console.log(data.map(item => item.musclecreate_image))
+                
+               
+            // })
+            .onSnapshot(querySnapshot => {
                 const data = [];
                 querySnapshot.forEach(documentSnapshot => {
                     data.push({
                         ...documentSnapshot.data(),
                         key: documentSnapshot.id
-                        
-                    });
-                }
-                );
+                    })
+                })
                 setData(data);
-                // console.log(data.map(item => item.musclecreate_image))
-                
-               
             })
 
-   
+
+
     }, [])
-
-
-
-   
-
-    
-
 
 
     function renderItem({ item }) {
         return (
-          <View>
-            
+          <View>    
             <TouchableOpacity onPress={()=> navigation.navigate('MuscleCreateDetail',{
                 muscleCreateId: firestore().collection('muscleCreate').doc(item.key).id,
                 musclecreate_name: item.musclecreate_name,
+                musclecreate_image: item.musclecreate_image
             })}
              style={{borderBottomWidth:1, borderBottomColor:'#ccc'}}
             
-            > 
+            >         
             <View>
-                <View>
-                    {bookMark(item)}
-                </View>
-              <Image
-                source={{uri: item.musclecreate_image}}
-                style={[styles.bannerContainer]}
-              />
+                <Image
+                    source={{uri: item.musclecreate_image}}
+                    style={[styles.bannerContainer]}
+                />
             
-            </View>
-                
+            </View>  
             <Text style={styles.button}>{item.musclecreate_name}</Text>
-
+            {/* <Text>{item.key}</Text> */}
+            
+    
             </TouchableOpacity>
           </View>
         );
     }
 
-   
-    function bookMark({ item }) {
-        return (
-            <View style={{flexDirection:'row'}}>
-                <TouchableOpacity>
-                    <IconButton
-                        icon="bookmark"
-                        color="#000"
-                        size={45}
-                        onPress={() => console.log('Pressed')}
-                    />
-                </TouchableOpacity>
-            </View>
-        );
-    }
-
-
-
-
-   
-
-
-
-
-
-
-
   return (
     
     <SafeAreaView style={styles.container}>
-        
-
         
         <View style={styles.headContainer}>
             <View style={styles.imageContainer}>
@@ -119,6 +89,9 @@ const MuscleCreate = ({route, navigation}) => {
                 />
             </View>     
         </View>
+        
+
+        
         <View>
             <View style={{ flexDirection: 'row', marginTop: 5, marginLeft: 5 }}>
                 <View style={{ flexDirection: 'row', marginTop: 5, marginLeft: 5 }}>
@@ -127,6 +100,7 @@ const MuscleCreate = ({route, navigation}) => {
                 </View>
             </View>
         </View>
+        
 
        
         <View>
@@ -134,11 +108,7 @@ const MuscleCreate = ({route, navigation}) => {
             <FlatList
                 data={data}
                 renderItem={renderItem}
-                // keyExtractor={item => item.key}
-                
-                
-                
-                
+                keyExtractor={item => item.key}    
             />
         </View>
         

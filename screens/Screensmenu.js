@@ -19,18 +19,28 @@ export default function Screensmenu({navigation}){
 
     const getUsername = () => {
         const user = auth().currentUser.uid;
-        firestore().collection('Users').doc(user).get().then((doc) => {
-            if (doc.exists) {
-                // console.log("Document data:", doc.data().fname),console.log("Document data:", doc.data().lname);
-                setName(doc.data().fname);
-                setLname(doc.data().lname);
-            } else {
-                // doc.data() will be undefined in this case
-                console.log("No such document!");
-            }
-        }).catch((error) => {
-            console.log("Error getting document:", error);
-        });
+        firestore()
+          .collection('Users')
+          .doc(user)
+          // .get()
+          // .then((doc) => {
+          //     if (doc.exists) {
+          //         // console.log("Document data:", doc.data().fname),console.log("Document data:", doc.data().lname);
+          //         setName(doc.data().fname);
+          //         setLname(doc.data().lname);
+          //     } else {
+          //         // doc.data() will be undefined in this case
+          //         console.log("No such document!");
+          //     }
+          // }).catch((error) => {
+          //     console.log("Error getting document:", error);
+          // });
+          .onSnapshot((doc) => {
+            setName(doc.data().fname);
+            setLname(doc.data().lname);
+          }
+          );
+
 
        
     }
@@ -40,11 +50,13 @@ export default function Screensmenu({navigation}){
 
 
     useEffect(() => {
+      
         getUsername();
     }, []);
    
     
     return (
+      
       <View style={styles.container}>
         <View style={styles.headContainer}>
           <View style={styles.imageContainer}>
@@ -65,6 +77,7 @@ export default function Screensmenu({navigation}){
                 borderRadius:20,
                 backgroundColor:'#748CAD'
               }}>
+            {getUsername()}
             <Text style={[styles.fontMenu,{color:'white'}]}>Welcome ' s</Text>
             <Text style={[styles.fontMenu]}>{name.toUpperCase()} {lname.toUpperCase()}</Text>
             </View>
@@ -110,6 +123,7 @@ export default function Screensmenu({navigation}){
           />
         </TouchableOpacity>
         </View>
+        
       </View>
 
     );

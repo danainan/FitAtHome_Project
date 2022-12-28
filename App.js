@@ -13,6 +13,7 @@ import MuscleCreate from './screens/MuscleCreate'
 import ProfileScreen from './screens/ProfileScreen'
 import ScreenbmiHistory from './screens/ScreenbmiHistory'
 import MuscleCreateDetail from './screens/MuscleCreateDetail'
+import BookmarkList from './screens/BookmarkList'
 
 
 const Stack = createStackNavigator();
@@ -77,6 +78,13 @@ function Mystack() {
           component={MuscleCreateDetail}
           options={{headerShown:false}}
         />
+        <Stack.Screen
+          name="BookmarkList"
+          component={BookmarkList}
+          options={{headerShown:false}}
+        />
+        
+        
 
       </Stack.Navigator>
 

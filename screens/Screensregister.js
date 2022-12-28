@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Image, Touchable, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native'
+import { StyleSheet, View, Text, Image, Touchable, TouchableOpacity, SafeAreaView, ScrollView, Alert } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Button, TextInput, RadioButton } from 'react-native-paper'
 import auth from '@react-native-firebase/auth';
@@ -44,10 +44,12 @@ const Screensregister = ({navigation}) => {
         .catch(error => {
             if (error.code === 'auth/email-already-in-use') {
                 console.log('That email address is already in use!');
+                Alert.alert('That email address is already in use!')
             }
 
             if (error.code === 'auth/invalid-email') {
                 console.log('That email address is invalid!');
+                Alert.alert('That email address is invalid!');
             }
 
             console.error(error);
@@ -57,10 +59,15 @@ const Screensregister = ({navigation}) => {
     }
 
     
-    const [gender, setGender] = React.useState('Male');
+
+    
+    const [gender, setGender] = React.useState('');
 
     const [date, setDate] = useState(new Date())
     const [open, setOpen] = useState(false)
+
+   
+
 
     
 
@@ -81,12 +88,14 @@ const Screensregister = ({navigation}) => {
             style={styles.input}
             label="Enter Email"
             value={email}
+            keyboardType="email-address"
             onChangeText={text => setEmail(text)}
           />
           <Text style={styles.text}>Password</Text>
           <TextInput
             style={styles.input}
             label="Enter Password"
+            secureTextEntry={true}
             value={password}
             onChangeText={text => setPassword(text)}
           />
@@ -115,12 +124,14 @@ const Screensregister = ({navigation}) => {
               value="Male"
               status={gender === 'Male' ? 'checked' : 'unchecked'}
               onPress={() => setGender('Male')}
+              theme={{colors: {primary: 'white'}}}
             />
             <Text style={{alignSelf: 'center', color: 'white',paddingRight:50}}>Male</Text>
             <RadioButton
               value="Female"
               status={gender === 'Female' ? 'checked' : 'unchecked'}
               onPress={() => setGender('Female')}
+              theme={{colors: {primary: 'white'}}}
             />
             <Text style={{alignSelf: 'center', color: 'white'}}>Female</Text>
           </View>

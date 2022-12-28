@@ -1,14 +1,24 @@
 import { StyleSheet, View, Text, Image, Touchable, TouchableOpacity, SafeAreaView } from 'react-native'
 import React, { useState, useEffect, useDebugValue } from 'react'
 import { Button, TextInput } from 'react-native-paper'
-import firestore, {serverTimestamp} from '@react-native-firebase/firestore'
+import firestore from '@react-native-firebase/firestore'
 import auth from '@react-native-firebase/auth';
+import moment from 'moment';
 
 const Screensbmi = ({navigation}) => {
     const [weight, setWeight] = useState("")
     const [height, setHeight] = useState("")
     const [bmi, setBmi] = useState('')
     const [description, setDescription] = useState('')
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        
+        setLoading(false)
+
+    }, [])
+
+
 
     const calculateBmi = () => {
         const bmi = weight /((height/100) * (height/100))
@@ -28,27 +38,115 @@ const Screensbmi = ({navigation}) => {
         }
     }
 
-    const saveData = () => {
+    function saveData() {
 
         firestore()
-        .collection('Bmi').add({
-            UserID : auth().currentUser.uid,
-            weight: weight,
-            height: height,
-            bmi: bmi,
-            date: firestore.FieldValue.serverTimestamp(),
-        })
-        .then(() => {
-            console.log('Data saved!');
-            alert('Data saved!');
-        })
+            .collection('Bmi')
+            .add({
+                UserID: auth().currentUser.uid,
+                weight: weight,
+                height: height,
+                bmi: bmi,
+                date: new Date(),
+            })
+            .then(() => {
+                // console.log('Data saved!');
+                alert('Data saved!');
+
+            })
+            .catch((error) => {
+                alert(error);
+            });
+
     }
+
+
+    const [dateRecords, setDateRecords] = useState([]);
+    const [monthRecords, setMonthRecords] = useState([]);
+
+
 
     function validateSaveData() {
         if (weight == "" || height == "") {
             alert("Please enter your weight and height")
         } else {
-            saveData()
+            var today = new Date();            
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+            var yyyy = today.getFullYear();
+            today =  mm + '/' + yyyy;
+
+            
+            
+            console.log('=====')
+            console.log('today =>',today)
+            console.log('today =>',typeof(today))
+            console.log('=====')
+
+
+            var check = false
+            firestore()
+                .collection('Bmi')
+                .where('UserID', '==', auth().currentUser.uid)
+                .onSnapshot(querySnapshot => {
+                    const dateRecords = [];
+                    const monthRecords = [];
+                    querySnapshot.forEach(documentSnapshot => {
+                        dateRecords.push(moment(documentSnapshot.data().date.toDate()).format('DD/MM/YYYY'));
+                        monthRecords.push(moment(documentSnapshot.data().date.toDate()).format('MM/YYYY'));
+                                    
+                    });
+                    setDateRecords(dateRecords.sort());
+                    setMonthRecords(monthRecords.sort());
+
+                    
+                
+                })
+
+                console.log('dateRecord => ', dateRecords)
+                console.log('monthRecord => ', monthRecords)
+
+
+
+                // for (var i = 0; i < dateRecords.length; i++) {
+                //     if (dateRecords[i] == today) {
+                //         check = true
+                //         break
+                //     } else {
+                //         check = false
+                //     }
+                // }
+                // console.log('check => ', check)
+                // if (check == false) {
+                //     saveData();
+                // } else {
+                //     alert("You have already saved your data for today");
+                // }
+
+                for (var i = 0; i < monthRecords.length; i++) {
+                    if (monthRecords[i] == today) {
+                        check = true
+                        break
+                    } else {
+                        check = false
+                    }
+                }
+                console.log('check => ', check)
+                if (check == false) {
+                    saveData();
+                }
+                else {
+                    alert("You have already saved your data for this month");
+                }
+
+
+
+
+
+
+
+
+
         }
     }
 
@@ -60,29 +158,31 @@ const Screensbmi = ({navigation}) => {
         }
     }
 
+
     function navigateHistoryBmi() {
         firestore()
-        .collection('Bmi')
-        .where('UserID', '==', auth().currentUser.uid)
-        .get()
-        .then(querySnapshot => {
-            if (querySnapshot.empty) {
-                alert("No data found. You can save your data by clicking 'Save' button")
-            } else {
-             navigation.navigate('ScreenbmiHistory')
-            }
-        })
-
+            .collection('Bmi')
+            .where('UserID', '==', auth().currentUser.uid)
+            // .get()
+            // .then(querySnapshot => {
+            //     if (querySnapshot.empty) {
+            //         alert("No data found. You can save your data by clicking 'Save' button")
+            //     } else {
+            //      navigation.navigate('ScreenbmiHistory')
+            //     }
+            // })
+            .onSnapshot(querySnapshot => {
+                if (querySnapshot.empty) {
+                    alert("No data found. You can save your data by clicking 'Save' button")
+                } else {
+                    navigation.navigate('ScreenbmiHistory')
+                }
+            })
 
 
     }
 
-
-
-
-
-
-
+    
   return (
     <SafeAreaView style={styles.container}>
         <View style={styles.headContainer}>
@@ -107,6 +207,8 @@ const Screensbmi = ({navigation}) => {
                 value={weight}
                 onChangeText={text => setWeight(text)}
                 keyboardType="numeric"
+                clearButtonMode='always'
+             
             />
             <Text style={styles.text}>ส่วนสูง (cm.)</Text>
             <TextInput
@@ -115,6 +217,8 @@ const Screensbmi = ({navigation}) => {
                 value={height}
                 onChangeText={text => setHeight(text)}
                 keyboardType="numeric"
+                clearButtonMode='always'
+               
             />
         </View>
         <View>
@@ -129,9 +233,9 @@ const Screensbmi = ({navigation}) => {
                     label={bmi}
                 />
         </View>
-        <View>
+        {/* <View>
             <Text styles={styles.text}>{description}</Text>
-        </View>
+        </View> */}
 
         <View>
             <Button style={styles.buttoncalContainer} mode="contained" onPress={validateSaveData}>
@@ -139,7 +243,13 @@ const Screensbmi = ({navigation}) => {
             </Button>
         </View>
         <View>
-            <TouchableOpacity onPress={navigateHistoryBmi}>
+            <TouchableOpacity onPress={() => {
+                navigateHistoryBmi()
+                setBmi('')
+                setWeight('')
+                setHeight('')
+            }}
+            >
                 <Image
                     source={require('../img/banner-graph.png')}
                     style={styles.bannerContainer}

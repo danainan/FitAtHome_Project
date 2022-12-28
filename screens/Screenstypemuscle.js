@@ -116,6 +116,20 @@ const Screenstypemuscle = ({navigation}) => {
                             />
                     </View>
                 </TouchableOpacity>
+
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('BookmarkList',{
+                        category_name: "bookmark",
+                        
+
+                    })}
+                >
+                    <View style={styles.buttonContainer}>
+                            <Image source={require('../img/category/bookmark2.jpg')}
+                                style={styles.bannerContainer} 
+                            />
+                    </View>
+                </TouchableOpacity>
             </View>
         </View>
     </View>
