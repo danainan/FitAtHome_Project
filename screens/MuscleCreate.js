@@ -19,22 +19,6 @@ const MuscleCreate = ({route, navigation}) => {
         firestore()
             .collection('muscleCreate')
             .where('category_name', '==', route.params.category_name)
-            // .get()
-            // .then(querySnapshot => {
-            //     const data = [];
-            //     querySnapshot.forEach(documentSnapshot => {
-            //         data.push({
-            //             ...documentSnapshot.data(),
-            //             key: documentSnapshot.id
-                        
-            //         });
-            //     }
-            //     );
-            //     setData(data);
-            //     // console.log(data.map(item => item.musclecreate_image))
-                
-               
-            // })
             .onSnapshot(querySnapshot => {
                 const data = [];
                 querySnapshot.forEach(documentSnapshot => {

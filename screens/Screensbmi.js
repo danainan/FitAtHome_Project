@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Image, Touchable, TouchableOpacity, SafeAreaView } from 'react-native'
+import { StyleSheet, View, Text, Image, Touchable, TouchableOpacity, SafeAreaView, Alert } from 'react-native'
 import React, { useState, useEffect, useDebugValue } from 'react'
 import { Button, TextInput } from 'react-native-paper'
 import firestore from '@react-native-firebase/firestore'
@@ -18,25 +18,35 @@ const Screensbmi = ({navigation}) => {
 
     }, [])
 
+    
 
 
     const calculateBmi = () => {
         const bmi = weight /((height/100) * (height/100))
         setBmi(bmi.toFixed(1))
+
   
         if(bmi < 18.5){
           setDescription('Underweight, eat more!')
+          alert('Underweight, eat more!')
         }
         else if (bmi >= 18.5 && bmi <= 24.9){
           setDescription('Normal, Keep it up!')
+            alert('Normal, Keep it up!')
         }
         else if (bmi >= 25 && bmi <= 29.9){
           setDescription('Overweight, start working out!!')
+            alert('Overweight, start working out!!')
         }
         else if (bmi >= 30 ){
           setDescription('Obese, Hit the gym!')
+            alert('Obese, Hit the gym!')
         }
     }
+
+    
+
+    
 
     function saveData() {
 

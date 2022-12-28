@@ -22,15 +22,6 @@ const MuscleCreateDetail = ({navigation, route}) => {
     firestore()
       .collection('muscleCreate')
       .where('musclecreate_name', '==', route.params.musclecreate_name)
-      // .get()
-      // .then(querySnapshot => {
-      //   querySnapshot.forEach(documentSnapshot => {
-      //     setMusclecreate_name(documentSnapshot.data().musclecreate_name);
-      //     setMusclecreate_description(documentSnapshot.data().musclecreate_description);
-      //     setMusclecreate_image(documentSnapshot.data().musclecreate_image);
-      //     setMusclecreate_times(documentSnapshot.data().musclecreate_times);
-      //   });
-      // });
       .onSnapshot(querySnapshot => {
 
         querySnapshot.forEach(documentSnapshot => {
@@ -46,14 +37,6 @@ const MuscleCreateDetail = ({navigation, route}) => {
       .collection('Bookmark')
       .where('musclecreate_name', '==', route.params.musclecreate_name)
       .where('user_id', '==', auth().currentUser.uid)
-      // .get()
-      // .then(querySnapshot => {
-      //   if (querySnapshot.size > 0) {
-      //     setBookmark(true);
-      //   } else {
-      //     setBookmark(false);
-      //   }
-      // });
       .onSnapshot(querySnapshot => {
         if (querySnapshot.size > 0) {
           setBookmark(true);
@@ -61,6 +44,7 @@ const MuscleCreateDetail = ({navigation, route}) => {
           setBookmark(false);
         }
       });
+
   }
 
 
@@ -81,21 +65,8 @@ const MuscleCreateDetail = ({navigation, route}) => {
   function deleteBookmark() {
     firestore()
       .collection('Bookmark')
-      // .where('musclecreateID', '==', route.params.muscleCreateId)
       .where('musclecreate_name', '==', route.params.musclecreate_name)
       .where('user_id', '==', auth().currentUser.uid)
-      // .get()
-      // .then(querySnapshot => {
-      //   querySnapshot.forEach(documentSnapshot => {
-      //     firestore()
-      //       .collection('Bookmark')
-      //       .doc(documentSnapshot.id)
-      //       .delete()
-      //       .then(() => {
-      //         console.log('Bookmark deleted!');
-      //       });
-      //   });
-      // });
       .onSnapshot(querySnapshot => {
         querySnapshot.forEach(documentSnapshot => {
           firestore()

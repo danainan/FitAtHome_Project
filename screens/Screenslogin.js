@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Image, SafeAreaView, Alert} from 'react-native'
+import { StyleSheet, View, Text, Image, SafeAreaView, Alert, TouchableOpacity} from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Button, TextInput } from 'react-native-paper'
 import firestore from '@react-native-firebase/firestore';
@@ -104,9 +104,10 @@ const Screenslogin = ({navigation}) => {
                 <Button style={styles.buttonloginContainer} mode="contained" onPress={loginValidation}>
                     Login
                 </Button>
-                <Button style={styles.buttonloginContainer} mode="contained" onPress={Screensregister}>
-                    Register
-                </Button>
+                
+                <TouchableOpacity onPress={Screensregister}>
+                    <Text style={{color: '#fff', alignSelf: 'center', marginTop: 10}}>Don't have an account? <Text style={{fontWeight:'bold',textDecorationLine:'underline'}}>Register</Text></Text>
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     )
