@@ -35,7 +35,7 @@ function ProfileScreen({navigation}) {
 
     
   }, []);
-
+//
   function onAuthStateChanged(user) {
     if (user) {
       console.log('User is signed in!');
